@@ -1,113 +1,277 @@
-import Image from "next/image";
+'use client'
+import 'swiper/css'
+import 'swiper/css/effect-creative'
+import {useEffect, useRef, useState} from "react";
+import {Swiper, SwiperSlide} from 'swiper/react';
+import Image from "next/image"
+import {Controller, EffectCoverflow, EffectCreative, Mousewheel, Thumbs} from 'swiper/modules';
+import HTMLFlipBook from 'react-pageflip';
+// import {PageFlip} from 'page-flip';
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    const [firstSwiper, setFirstSwiper] = useState(null);
+    const [secondSwiper, setSecondSwiper] = useState(null);
+    const book = useRef();
+
+    useEffect(() => {
+        return () => {
+            // bookcu.loadFromImages(["/1.jpg","/2.jpg"])
+        }
+    }, []);
+    return (
+
+        <div dir="rtl" className="texture bg-zinc-100 h-screen w-full">
+            <div
+                className={"z-[999] items-center flex px-4 bg-zinc-900 border-b border-zinc-500 fixed top-0 h-[56px] w-full"}>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                     fill="#e8eaed">
+                    <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+                </svg>
+            </div>
+            <div dir={"rtl"}
+                 className="h-screen relative container md:mx-auto mr-auto  w-full pr-4 md:pr-0 sm:w-full  lg:w-8/12  flex items-center justify-center ">
+                <HTMLFlipBook startZIndex={4} startPage={25} width={550}
+                              height={733}
+                              size="stretch"
+                              minWidth={315}
+                              maxWidth={1000}
+                              minHeight={400}
+                              maxHeight={1533}
+                              maxShadowOpacity={0.5}
+                              showCover={true}
+                              mobileScrollSupport={true}
+                    // className={"shadow-elevated-three-light"}
+                    // onFlip={this.onPage}
+                    // onChangeOrientation={this.onChangeOrientation}
+                    // onChangeState={this.onChangeState}
+                >
+                    <div
+                        className={"bg-[rgb(35,35,44)] relative md:px-6 px-4"}>
+                        <div className={"!flex !h-full relative w-full items-center justify-center"}>
+                            <Image quality={100} objectFit={"contain"} layout={"fill"} src={`/23.jpg`} alt={""}/>
+                        </div>
+                        <div
+                            className={"absolute font-medium  text-black text-[14px] bottom-6 w-full text-center left-0"}>
+                            {/*{index-index+1}*/}
+                        </div>
+                    </div>
+                    <div
+                        className={"bg-[rgb(35,35,44)] relative md:px-6 px-4"}>
+                    </div>
+                    {[22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0].map((item, index) =>
+                        <div key={index}
+                             className={"bg-white relative md:px-6 px-4"}>
+
+                            <div className={"!flex !h-full relative w-full items-center justify-center"}>
+                                <Image quality={100} objectFit={"contain"} layout={"fill"} src={`/${item}.jpg`}
+                                       alt={""}/>
+                            </div>
+                            <div
+                                className={"absolute font-medium  text-black text-[14px] bottom-6 w-full text-center left-0"}>
+                                {item+1}
+                            </div>
+                        </div>)}
+
+                    <div
+                        className={"bg-[rgb(35,35,44)] relative md:px-6 px-4"}>
+                        <div className={"!flex !h-full relative w-full items-center justify-center"}>
+                            <Image quality={100} objectFit={"contain"} layout={"fill"} src={`/-1.jpg`} alt={""}/>
+                        </div>
+                        <div
+                            className={"absolute font-medium  text-black text-[14px] bottom-6 w-full text-center left-0"}>
+                            {/*{index-index+1}*/}
+                        </div>
+                    </div>
+                </HTMLFlipBook>
+            </div>
+            {/*<div className={"h-screen grid grid-cols-12"}>*/}
+            {/*    <div className={"col-span-6"}>*/}
+            {/*        <Swiper*/}
+
+
+            {/*            onSwiper={setFirstSwiper}*/}
+            {/*            controller={{control: secondSwiper}}*/}
+            {/*            className="h-screen w-full bg-zinc-900"*/}
+            {/*            speed={1000}*/}
+            {/*            modules={[Controller, EffectCreative]}*/}
+            {/*            slidesPerView={1}*/}
+            {/*            effect={"creative"}*/}
+
+            {/*            // coverflowEffect={{*/}
+            {/*            //     rotate:0,*/}
+            {/*            //     depth:0,*/}
+            {/*            //     slideShadows:false,*/}
+            {/*            //     scale:0.5,*/}
+            {/*            // }}*/}
+
+            {/*            creativeEffect={{*/}
+
+            {/*                // perspective: true,*/}
+            {/*                limitProgress: 100,*/}
+            {/*                progressMultiplier: 2,*/}
+
+            {/*                prev: {*/}
+            {/*                    // will set `translateZ(-400px)` on previous slides*/}
+            {/*                    translate: [0, 0, 0],*/}
+            {/*                    shadow: true,*/}
+            {/*                },*/}
+            {/*                next: {*/}
+            {/*                    // will set `translateX(100%)` on next slides*/}
+
+            {/*                    translate: ["100%", 10, 400],*/}
+            {/*                    // opacity:0.8,*/}
+            {/*                },*/}
+            {/*                shadowPerProgress: true,*/}
+            {/*            }}*/}
+            {/*        >*/}
+            {/*            <SwiperSlide className={"pattern"}>*/}
+            {/*                <div>*/}
+
+            {/*                </div>*/}
+            {/*            </SwiperSlide>*/}
+            {/*            <SwiperSlide className={"pattern shadow-2xl relative bg-zinc-950"}>*/}
+            {/*                <div className={"!flex !h-full relative w-full items-center justify-center"}>*/}
+            {/*                    <Image objectFit={"contain"} layout={"fill"} src={"/1.jpg"} alt={""}/>*/}
+            {/*                </div>*/}
+            {/*                <div className={"absolute font-medium text-[12px] bottom-6 w-full text-center left-0"}>*/}
+            {/*                    1*/}
+            {/*                </div>*/}
+            {/*            </SwiperSlide>*/}
+
+            {/*            <SwiperSlide className={"pattern shadow-2xl relative bg-zinc-950"}>*/}
+            {/*                <div className={"flex  !h-full w-full  items-center justify-center"}>*/}
+            {/*                    <div className={"w-full"}>*/}
+            {/*                        /!*<h3 className={"px-4 mb-4 font-medium text-[16px]"}>*!/*/}
+            {/*                        /!*    ENJOY PLAYING WITH YOUR*!/*/}
+            {/*                        /!*    LOVED ONES AT THE BEACH*!/*/}
+            {/*                        /!*</h3>*!/*/}
+            {/*                        <div className={"relative aspect-video"}>*/}
+            {/*                            <Image objectFit={"contain"} layout={"fill"} src={"/2.png"} alt={""}/>*/}
+            {/*                        </div>*/}
+            {/*                        <h3 className={" w-full px-4 text-[12px] text-right  font-medium mt-1 text-[#C3A66D]"}>*/}
+            {/*                            PERSIAN LUXE*/}
+            {/*                        </h3>*/}
+            {/*                        <div className={"absolute text-[12px] bottom-6 w-full text-center left-0"}>*/}
+            {/*                            2*/}
+            {/*                        </div>*/}
+            {/*                    </div>*/}
+            {/*                </div>*/}
+            {/*            </SwiperSlide>*/}
+            {/*            /!*<SwiperSlide className={"pattern shadow-2xl relative bg-zinc-950"}>*!/*/}
+            {/*            /!*    <div className={"flex  !h-full w-full  items-center justify-center"}>*!/*/}
+            {/*            /!*        <div className={"w-full"}>*!/*/}
+            {/*            /!*            /!*<h3 className={"px-4 mb-4 font-medium text-[16px]"}>*!/*!/*/}
+            {/*            /!*            /!*    ENJOY PLAYING WITH YOUR*!/*!/*/}
+            {/*            /!*            /!*    LOVED ONES AT THE BEACH*!/*!/*/}
+            {/*            /!*            /!*</h3>*!/*!/*/}
+            {/*            /!*            <div className={"relative aspect-video"}>*!/*/}
+            {/*            /!*                <Image objectFit={"contain"} layout={"fill"} src={"/2.png"} alt={""}/>*!/*/}
+            {/*            /!*            </div>*!/*/}
+            {/*            /!*            <h3 className={" w-full px-4 text-[12px] text-right  font-medium mt-1 text-[#C3A66D]"}>*!/*/}
+            {/*            /!*                PERSIAN LUXE*!/*/}
+            {/*            /!*            </h3>*!/*/}
+            {/*            /!*            <div className={"absolute text-[12px] bottom-6 w-full text-center left-0"}>*!/*/}
+            {/*            /!*                2*!/*/}
+            {/*            /!*            </div>*!/*/}
+            {/*            /!*        </div>*!/*/}
+            {/*            /!*    </div>*!/*/}
+            {/*            /!*</SwiperSlide>*!/*/}
+            {/*            /!*<SwiperSlide/>*!/*/}
+            {/*        </Swiper>*/}
+            {/*    </div>*/}
+            {/*    <div className={"h-screen col-span-6"}>*/}
+            {/*        <Swiper*/}
+            {/*            // thumbs={{ swiper: thumbsSwiper }}*/}
+            {/*            onSwiper={setSecondSwiper}*/}
+            {/*            controller={{control: firstSwiper}}*/}
+            {/*            className="h-screen w-full bg-zinc-900"*/}
+            {/*            speed={1400}*/}
+            {/*            modules={[Controller, EffectCreative]}*/}
+            {/*            slidesPerView={1}*/}
+
+
+            {/*            effect={"creative"}*/}
+
+            {/*            creativeEffect={{*/}
+
+            {/*                // perspective: true,*/}
+            {/*                limitProgress: 100,*/}
+            {/*                progressMultiplier: 2,*/}
+
+            {/*                prev: {*/}
+            {/*                    // will set `translateZ(-400px)` on previous slides*/}
+            {/*                    translate: ["-100%", 10, 400],*/}
+            {/*                    shadow: true,*/}
+            {/*                },*/}
+            {/*                next: {*/}
+            {/*                    // will set `translateX(100%)` on next slides*/}
+            {/*                    translate: [0, 0, 0],*/}
+
+            {/*                    // opacity:0.8,*/}
+            {/*                },*/}
+            {/*                shadowPerProgress: true,*/}
+            {/*            }}*/}
+            {/*        >*/}
+            {/*            <SwiperSlide className={"pattern shadow-2xl relative bg-zinc-950"}>*/}
+            {/*                <div className={"!flex !h-full relative w-full items-center justify-center"}>*/}
+            {/*                    <Image objectFit={"contain"} layout={"fill"} src={"/1.jpg"} alt={""}/>*/}
+            {/*                </div>*/}
+            {/*                <div className={"absolute font-medium text-[12px] bottom-6 w-full text-center left-0"}>*/}
+            {/*                    1*/}
+            {/*                </div>*/}
+            {/*            </SwiperSlide>*/}
+            {/*            /!*<SwiperSlide className={"pattern shadow-2xl relative bg-zinc-950"}>*!/*/}
+            {/*            /!*    <div className={"!flex !h-full relative w-full items-center justify-center"}>*!/*/}
+            {/*            /!*        <Image objectFit={"contain"} layout={"fill"} src={"/1.jpg"} alt={""}/>*!/*/}
+            {/*            /!*    </div>*!/*/}
+            {/*            /!*    <div className={"absolute font-medium text-[12px] bottom-6 w-full text-center left-0"}>*!/*/}
+            {/*            /!*        1*!/*/}
+            {/*            /!*    </div>*!/*/}
+            {/*            /!*</SwiperSlide>*!/*/}
+
+            {/*            <SwiperSlide className={"pattern shadow-2xl relative bg-zinc-950"}>*/}
+            {/*                <div className={"flex  !h-full w-full  items-center justify-center"}>*/}
+            {/*                    <div className={"w-full"}>*/}
+            {/*                        /!*<h3 className={"px-4 mb-4 font-medium text-[16px]"}>*!/*/}
+            {/*                        /!*    ENJOY PLAYING WITH YOUR*!/*/}
+            {/*                        /!*    LOVED ONES AT THE BEACH*!/*/}
+            {/*                        /!*</h3>*!/*/}
+            {/*                        <div className={"relative aspect-video"}>*/}
+            {/*                            <Image objectFit={"contain"} layout={"fill"} src={"/2.png"} alt={""}/>*/}
+            {/*                        </div>*/}
+            {/*                        <h3 className={" w-full px-4 text-[12px] text-right  font-medium mt-1 text-[#C3A66D]"}>*/}
+            {/*                            PERSIAN LUXE*/}
+            {/*                        </h3>*/}
+            {/*                        <div className={"absolute text-[12px] bottom-6 w-full text-center left-0"}>*/}
+            {/*                            2*/}
+            {/*                        </div>*/}
+            {/*                    </div>*/}
+            {/*                </div>*/}
+            {/*            </SwiperSlide>*/}
+            {/*            /!*<SwiperSlide className={"pattern shadow-2xl relative bg-zinc-950"}>*!/*/}
+            {/*            /!*    <div className={"flex  !h-full w-full  items-center justify-center"}>*!/*/}
+            {/*            /!*        <div className={"w-full"}>*!/*/}
+            {/*            /!*            /!*<h3 className={"px-4 mb-4 font-medium text-[16px]"}>*!/*!/*/}
+            {/*            /!*            /!*    ENJOY PLAYING WITH YOUR*!/*!/*/}
+            {/*            /!*            /!*    LOVED ONES AT THE BEACH*!/*!/*/}
+            {/*            /!*            /!*</h3>*!/*!/*/}
+            {/*            /!*            <div className={"relative aspect-video"}>*!/*/}
+            {/*            /!*                <Image objectFit={"contain"} layout={"fill"} src={"/2.png"} alt={""}/>*!/*/}
+            {/*            /!*            </div>*!/*/}
+            {/*            /!*            <h3 className={" w-full px-4 text-[12px] text-right  font-medium mt-1 text-[#C3A66D]"}>*!/*/}
+            {/*            /!*                PERSIAN LUXE*!/*/}
+            {/*            /!*            </h3>*!/*/}
+            {/*            /!*            <div className={"absolute text-[12px] bottom-6 w-full text-center left-0"}>*!/*/}
+            {/*            /!*                2*!/*/}
+            {/*            /!*            </div>*!/*/}
+            {/*            /!*        </div>*!/*/}
+            {/*            /!*    </div>*!/*/}
+            {/*            /!*</SwiperSlide>*!/*/}
+            {/*            <SwiperSlide/>*/}
+            {/*        </Swiper>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
         </div>
-      </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+    );
 }
