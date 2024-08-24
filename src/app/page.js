@@ -2,35 +2,52 @@
 import 'swiper/css'
 import 'swiper/css/effect-creative'
 import {useEffect, useRef, useState} from "react";
-import {Swiper, SwiperSlide} from 'swiper/react';
 import Image from "next/image"
-import {Controller, EffectCoverflow, EffectCreative, Mousewheel, Thumbs} from 'swiper/modules';
 import HTMLFlipBook from 'react-pageflip';
-// import {PageFlip} from 'page-flip';
 
 export default function Home() {
     const [firstSwiper, setFirstSwiper] = useState(null);
     const [secondSwiper, setSecondSwiper] = useState(null);
+ const [isOpen,setIsOpen] = useState(false);
     const book = useRef();
-
+   const [pageNumber,setPageNumber] = useState(25);
     useEffect(() => {
         return () => {
             // bookcu.loadFromImages(["/1.jpg","/2.jpg"])
         }
     }, []);
+    const changePage = (num)=> {
+        book.current.pageFlip().flip(num)
+    }
     return (
 
         <div dir="rtl" className="texture bg-zinc-100 h-screen w-full">
-            <div
-                className={"z-[999] items-center flex px-4 bg-zinc-900 border-b border-zinc-500 fixed top-0 h-[56px] w-full"}>
+            {isOpen&&<div className={"absolute top-0 right-0 h-screen w-[360px] bg-black z-[1001]"}>
+                <div onClick={()=>setIsOpen(false)} className={"h-[56px] flex items-center px-4"}>
+                    {"X"}
+                </div>
+                <ul>
+                    <li onClick={() => changePage(25-(6))} className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
+                        صفحه ششم
+                    </li>
+                    <li onClick={() => changePage(25-(10))} className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
+                        صفحه دهم
+                    </li>
+                    <li onClick={() => changePage(25-(20))} className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
+                        صفحه بیستم
+                    </li>
+                </ul>
+            </div>}
+            <div onClick={()=>setIsOpen(true)}
+                className={"z-[999] items-center flex px-4 bg-zinc-900/70 backdrop-blur border-b border-zinc-500 fixed top-0 h-[56px] w-full"}>
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                      fill="#e8eaed">
                     <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
                 </svg>
             </div>
             <div dir={"rtl"}
-                 className="h-screen relative container md:mx-auto mr-auto  w-full pr-4 md:pr-0 sm:w-full  lg:w-8/12  flex items-center justify-center ">
-                <HTMLFlipBook startZIndex={4} startPage={25} width={550}
+                 className="h-screen relative container md:mx-auto mr-auto  w-full  md:pr-0 sm:w-full  lg:w-8/12  flex items-center justify-center ">
+                <HTMLFlipBook key={1} ref={book} clickEventForward={true} startZIndex={4} startPage={25} width={550}
                               height={733}
                               size="stretch"
                               minWidth={315}
@@ -43,8 +60,7 @@ export default function Home() {
                     // className={"shadow-elevated-three-light"}
                     // onFlip={this.onPage}
                     // onChangeOrientation={this.onChangeOrientation}
-                    // onChangeState={this.onChangeState}
-                >
+                  >
                     <div
                         className={"bg-[rgb(35,35,44)] relative md:px-6 px-4"}>
                         <div className={"!flex !h-full relative w-full items-center justify-center"}>
@@ -83,6 +99,15 @@ export default function Home() {
                         </div>
                     </div>
                 </HTMLFlipBook>
+            </div>
+            <div className={"md:flex hidden fixed bottom-0 h-[72px] justify-end px-8 mx-auto w-full left-0 space-x-2 space-x-reverse"}>
+                <button className={"font-bold text-[24px] w-[48px] h-[48px] flex items-center justify-center rounded-full bg-black/50 backdrop-blur"} onClick={() => book.current.pageFlip().flipNext()}>
+                    {"→"}
+                </button>
+                <button className={"font-bold text-[24px] w-[48px] h-[48px] flex items-center justify-center rounded-full bg-black/50 backdrop-blur"} onClick={() => book.current.pageFlip().flipPrev()}>
+                    {"←"}
+                </button>
+
             </div>
             {/*<div className={"h-screen grid grid-cols-12"}>*/}
             {/*    <div className={"col-span-6"}>*/}
