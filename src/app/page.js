@@ -49,7 +49,7 @@ export default function Home() {
                 </svg>
             </div>
             <div dir={"rtl"}
-                 className="md:flex hidden h-screen relative container md:mx-auto mr-auto  w-full  md:pr-0 sm:w-full  lg:w-8/12   items-center justify-center ">
+                 className="md:flex hidden h-screen relative container md:mx-auto mr-auto  w-full  md:pr-0 sm:w-10/12 md:w-10/12  lg:w-9/12   items-center justify-center ">
                 <HTMLFlipBook key={1} ref={book} clickEventForward={true} startZIndex={4} startPage={25} width={550}
                               height={733}
                               size="stretch"
