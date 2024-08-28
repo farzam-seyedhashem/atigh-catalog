@@ -9,16 +9,20 @@ export default function Home() {
     const [firstSwiper, setFirstSwiper] = useState(null);
     const [secondSwiper, setSecondSwiper] = useState(null);
  const [isOpen,setIsOpen] = useState(false);
+    const bookD = useRef();
     const book = useRef();
-   const [pageNumber,setPageNumber] = useState(25);
     useEffect(() => {
         return () => {
             // bookcu.loadFromImages(["/1.jpg","/2.jpg"])
         }
     }, []);
     const changePage = (num)=> {
-        book.current.pageFlip().flip(num)
+        bookD.current.pageFlip().flip(num)
     }
+    const changePageMobile = async (num) => {
+         book.current.pageFlip().flip(num)
+    }
+
     return (
 
         <div dir="rtl" className="bg-zinc-900 h-screen w-full">
@@ -26,18 +30,48 @@ export default function Home() {
                 <div onClick={() => setIsOpen(false)} className={"h-[56px] flex items-center px-4"}>
                     {"X"}
                 </div>
-                <ul>
-                    <li onClick={() => changePage(25 - (6))}
+                <ul className={"md:hidden block"}>
+                    <li onClick={() => changePageMobile((1))}
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
-                        صفحه ششم
+                        درباره ما
                     </li>
-                    <li onClick={() => changePage(25 - (10))}
+                    <li onClick={() => changePageMobile((8))}
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
-                        صفحه دهم
+                        امکانات رفاهی
                     </li>
-                    <li onClick={() => changePage(25 - (20))}
+                    <li onClick={() => changePageMobile((18))}
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
-                        صفحه بیستم
+                        مدیریت بهره برداری
+                    </li>
+                    <li onClick={() => changePageMobile((19))}
+                        className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
+                        پلان
+                    </li>
+                    <li onClick={() => changePageMobile(23)}
+                        className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
+                        تماس با ما
+                    </li>
+                </ul>
+                <ul className={"md:block hidden"}>
+                    <li onClick={() => changePage(25 - (1))}
+                        className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
+                        درباره ما
+                    </li>
+                    <li onClick={() => changePage(25 - (8))}
+                        className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
+                        امکانات رفاهی
+                    </li>
+                    <li onClick={() => changePage(25 - (18))}
+                        className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
+                        مدیریت بهره برداری
+                    </li>
+                    <li onClick={() => changePage(25 - (19))}
+                        className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
+                        پلان
+                    </li>
+                    <li onClick={() => changePage(25 - (23))}
+                        className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
+                        تماس با ما
                     </li>
                 </ul>
             </div>}
@@ -50,7 +84,7 @@ export default function Home() {
             </div>
             <div dir={"rtl"}
                  className="md:flex hidden h-screen relative container md:mx-auto mr-auto  w-full  md:pr-0 sm:w-10/12 md:w-10/12  lg:w-9/12   items-center justify-center ">
-                <HTMLFlipBook key={1} ref={book} clickEventForward={true} startZIndex={4} startPage={25} width={550}
+                <HTMLFlipBook key={1} ref={bookD} clickEventForward={true} startZIndex={4} startPage={25} width={550}
                               height={733}
                               size="stretch"
                               minWidth={315}
@@ -105,7 +139,7 @@ export default function Home() {
             </div>
             <div dir={"rtl"}
                  className="md:hidden flex h-screen relative container md:mx-auto mr-auto  w-full  md:pr-0 sm:w-full  lg:w-8/12   items-center justify-center ">
-                <HTMLFlipBook key={1} ref={book} clickEventForward={true} startZIndex={4} width={550}
+                <HTMLFlipBook key={1} ref={book} clickEventForward={true} startPage={0} startZIndex={4} width={550}
                               height={733}
                               size="stretch"
                               minWidth={315}
@@ -130,6 +164,7 @@ export default function Home() {
                         </div>
                     </div>
 
+
                     {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22].map((item, index) =>
                         <div key={index}
                              className={"bg-white relative md:px-6 px-4"}>
@@ -143,9 +178,7 @@ export default function Home() {
                                 {item + 1}
                             </div>
                         </div>)}
-                    <div
-                        className={"bg-[rgb(35,35,44)] relative md:px-6 px-4"}>
-                    </div>
+
                     <div
                         className={"bg-[rgb(35,35,44)] relative md:px-6 px-4"}>
                         <div className={"!flex !h-full relative w-full items-center justify-center"}>
