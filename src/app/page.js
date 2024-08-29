@@ -6,32 +6,36 @@ import Image from "next/image"
 import HTMLFlipBook from 'react-pageflip';
 
 export default function Home() {
-    const [firstSwiper, setFirstSwiper] = useState(null);
-    const [secondSwiper, setSecondSwiper] = useState(null);
- const [isOpen,setIsOpen] = useState(false);
-    const bookD = useRef();
-    const book = useRef();
-    useEffect(() => {
-        return () => {
-            // bookcu.loadFromImages(["/1.jpg","/2.jpg"])
-        }
-    }, []);
-    const changePage = (num)=> {
+    const [isOpen, setIsOpen] = useState(false);
+    const bookD = useRef(null);
+    const book = useRef(null);
+    const menu = useRef(null);
+    const changePage = (num) => {
         bookD.current.pageFlip().flip(num)
+        openCloseMenu()
     }
     const changePageMobile = async (num) => {
-         book.current.pageFlip().flip(num)
+        book.current.pageFlip().flip(num)
+        openCloseMenu()
+    }
+   const openCloseMenu = () => {
+        if ( menu.current.classList.contains("hidden") ) {
+            menu.current.classList.remove("hidden");
+        }else{
+            menu.current.classList.add("hidden");
+        }
+
     }
 
     return (
 
         <div dir="rtl" className="bg-zinc-900 h-screen w-full">
-            {isOpen && <div className={"absolute top-0 right-0 h-screen w-[360px] bg-black z-[1001]"}>
-                <div onClick={() => setIsOpen(false)} className={"h-[56px] flex items-center px-4"}>
+            { <div ref={menu} className={"hidden absolute top-0 right-0 h-screen w-[360px] bg-black z-[1001]"}>
+                <div onClick={() =>  openCloseMenu()} className={"h-[56px] flex items-center px-4"}>
                     {"X"}
                 </div>
                 <ul className={"md:hidden block"}>
-                    <li onClick={() => changePageMobile((1))}
+                    <li onClick={() => changePageMobile((2))}
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
                         درباره ما
                     </li>
@@ -47,35 +51,35 @@ export default function Home() {
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
                         پلان
                     </li>
-                    <li onClick={() => changePageMobile(23)}
+                    <li onClick={() => changePageMobile(24)}
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
                         تماس با ما
                     </li>
                 </ul>
                 <ul className={"md:block hidden"}>
-                    <li onClick={() => changePage(25 - (1))}
+                    <li onClick={() => changePage(23 - (1))}
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
                         درباره ما
                     </li>
-                    <li onClick={() => changePage(25 - (8))}
+                    <li onClick={() => changePage(23 - (8))}
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
                         امکانات رفاهی
                     </li>
-                    <li onClick={() => changePage(25 - (18))}
+                    <li onClick={() => changePage(23 - (18))}
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
                         مدیریت بهره برداری
                     </li>
-                    <li onClick={() => changePage(25 - (19))}
+                    <li onClick={() => changePage(23 - (19))}
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
                         پلان
                     </li>
-                    <li onClick={() => changePage(25 - (23))}
+                    <li onClick={() => changePage(0)}
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
                         تماس با ما
                     </li>
                 </ul>
             </div>}
-            <div onClick={() => setIsOpen(true)}
+            <div onClick={() => openCloseMenu()}
                  className={"z-[999] items-center flex px-4 bg-zinc-900/70 backdrop-blur border-b border-zinc-500 fixed top-0 h-[56px] w-full"}>
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                      fill="#e8eaed">
@@ -108,10 +112,11 @@ export default function Home() {
                             {/*{index-index+1}*/}
                         </div>
                     </div>
-                    <div
-                        className={"bg-[rgb(35,35,44)] relative md:px-6 px-4"}>
-                    </div>
-                    {[22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0].map((item, index) =>
+                    {/*<div*/}
+                    {/*    className={"bg-[rgb(35,35,44)] relative md:px-6 px-4"}>*/}
+                    {/*</div>*/}
+
+                    {[21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0].map((item, index) =>
                         <div key={index}
                              className={"bg-white relative md:px-6 px-4"}>
 
@@ -124,7 +129,9 @@ export default function Home() {
                                 {item + 1}
                             </div>
                         </div>)}
-
+                    {/*<div*/}
+                    {/*    className={"bg-[rgb(35,35,44)] relative md:px-6 px-4"}>*/}
+                    {/*</div>*/}
                     <div
                         className={"bg-[rgb(35,35,44)] relative md:px-6 px-4"}>
                         <div className={"!flex !h-full relative w-full items-center justify-center"}>
@@ -203,7 +210,7 @@ export default function Home() {
                 <button
                     className={"font-bold text-[24px] w-[48px] h-[48px] flex items-center justify-center rounded-full bg-black/50 backdrop-blur"}
                     onClick={() => book.current.pageFlip().flipPrev()}>
-                {"←"}
+                    {"←"}
                 </button>
 
             </div>
