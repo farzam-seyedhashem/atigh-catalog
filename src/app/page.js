@@ -18,10 +18,10 @@ export default function Home() {
         book.current.pageFlip().flip(num)
         openCloseMenu()
     }
-   const openCloseMenu = () => {
-        if ( menu.current.classList.contains("hidden") ) {
+    const openCloseMenu = () => {
+        if (menu.current.classList.contains("hidden")) {
             menu.current.classList.remove("hidden");
-        }else{
+        } else {
             menu.current.classList.add("hidden");
         }
 
@@ -155,13 +155,19 @@ export default function Home() {
 
                     <div
                         className={"bg-[rgb(35,35,44)] relative md:px-6 px-4"}>
-                        <div className={"!flex !h-full relative w-full items-center justify-center"}>
-                            <Image quality={100} objectFit={"contain"} layout={"fill"} src={`/23.jpg`} alt={""}/>
+                        <div className={"flex !h-full relative w-full items-center justify-center"}>
+                            <div className={"relative"}>
+                                <Image quality={100} objectFit={"contain"} width={1920} height={1080}
+                                       layout={"responsive"} src={`/23.jpg`} alt={""}/>
+                                <div className={"font-medium absolute bottom-0 left-1/2 transform -translate-x-1/2 text-[14px] text-center text-[rgb(130,121,106)]"}>
+                                    info@atighcompanycom
+                                </div>
+                            </div>
                         </div>
-                        <div
-                            className={"absolute font-medium  text-black text-[14px] bottom-6 w-full text-center left-0"}>
-                            {/*{index-index+1}*/}
-                        </div>
+                        {/*<div*/}
+                        {/*    className={" font-medium  text-black text-[14px] bottom-6 w-full text-center left-0"}>*/}
+                        {/*    info@atighcompanycom*/}
+                        {/*</div>*/}
                     </div>
 
 
@@ -211,12 +217,15 @@ export default function Home() {
 
                     <div
                         className={"bg-[rgb(35,35,44)] relative md:px-6 px-4"}>
-                        <div className={"!flex !h-full relative w-full items-center justify-center"}>
-                            <Image quality={100} objectFit={"contain"} layout={"fill"} src={`/23.jpg`} alt={""}/>
-                        </div>
-                        <div
-                            className={"absolute font-medium  text-black text-[14px] bottom-6 w-full text-center left-0"}>
-                            {/*{index-index+1}*/}
+                        <div className={"flex !h-full relative w-full items-center justify-center"}>
+                            <div className={"relative"}>
+                                <Image quality={100} objectFit={"contain"} width={1920} height={1080}
+                                       layout={"responsive"} src={`/23.jpg`} alt={""}/>
+                                <div
+                                    className={"font-medium absolute bottom-0 left-1/2 transform -translate-x-1/2 text-[14px] text-center text-[rgb(130,121,106)]"}>
+                                    info@atighcompanycom
+                                </div>
+                            </div>
                         </div>
                     </div>
 
