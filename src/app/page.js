@@ -30,8 +30,8 @@ export default function Home() {
     return (
 
         <div dir="rtl" className="bg-zinc-900 h-screen w-full">
-            { <div ref={menu} className={"hidden absolute top-0 right-0 h-screen w-[360px] bg-black z-[1001]"}>
-                <div onClick={() =>  openCloseMenu()} className={"h-[56px] flex items-center px-4"}>
+            {<div ref={menu} className={"hidden absolute top-0 right-0 h-screen w-[360px] bg-black z-[1001]"}>
+                <div onClick={() => openCloseMenu()} className={"h-[56px] flex items-center px-4"}>
                     {"X"}
                 </div>
                 <ul className={"md:hidden block"}>
@@ -51,33 +51,55 @@ export default function Home() {
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
                         پلان
                     </li>
-                    <li onClick={() => changePageMobile(24)}
+                    <li onClick={() => changePageMobile(23)}
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
                         تماس با ما
                     </li>
                 </ul>
                 <ul className={"md:block hidden"}>
-                    <li onClick={() => changePage(23 - (1))}
+                    <li onClick={() => changePage((2))}
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
                         درباره ما
                     </li>
-                    <li onClick={() => changePage(23 - (8))}
+                    <li onClick={() => changePage((8))}
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
                         امکانات رفاهی
                     </li>
-                    <li onClick={() => changePage(23 - (18))}
+                    <li onClick={() => changePage((18))}
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
                         مدیریت بهره برداری
                     </li>
-                    <li onClick={() => changePage(23 - (19))}
+                    <li onClick={() => changePage((19))}
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
                         پلان
                     </li>
-                    <li onClick={() => changePage(0)}
+                    <li onClick={() => changePage(23)}
                         className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>
                         تماس با ما
                     </li>
                 </ul>
+                {/*<ul className={"md:block hidden"}>*/}
+                {/*    <li onClick={() => changePage(23 - (1))}*/}
+                {/*        className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>*/}
+                {/*        درباره ما*/}
+                {/*    </li>*/}
+                {/*    <li onClick={() => changePage(23 - (8))}*/}
+                {/*        className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>*/}
+                {/*        امکانات رفاهی*/}
+                {/*    </li>*/}
+                {/*    <li onClick={() => changePage(23 - (18))}*/}
+                {/*        className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>*/}
+                {/*        مدیریت بهره برداری*/}
+                {/*    </li>*/}
+                {/*    <li onClick={() => changePage(23 - (19))}*/}
+                {/*        className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>*/}
+                {/*        پلان*/}
+                {/*    </li>*/}
+                {/*    <li onClick={() => changePage(0)}*/}
+                {/*        className={"hover:bg-white/[4%] text-white font-medium px-6 py-4 text-[16px]"}>*/}
+                {/*        تماس با ما*/}
+                {/*    </li>*/}
+                {/*</ul>*/}
             </div>}
             <div onClick={() => openCloseMenu()}
                  className={"z-[999] items-center flex px-4 bg-zinc-900/70 backdrop-blur border-b border-zinc-500 fixed top-0 h-[56px] w-full"}>
@@ -88,7 +110,7 @@ export default function Home() {
             </div>
             <div dir={"rtl"}
                  className="md:flex hidden h-screen relative container md:mx-auto mr-auto  w-full  md:pr-0 sm:w-10/12 md:w-10/12  lg:w-9/12   items-center justify-center ">
-                <HTMLFlipBook key={1} ref={bookD} clickEventForward={true} startZIndex={4} startPage={25} width={550}
+                <HTMLFlipBook key={1} ref={bookD} clickEventForward={true} startZIndex={4} width={550}
                               height={733}
                               size="stretch"
                               minWidth={315}
@@ -105,18 +127,19 @@ export default function Home() {
                     <div
                         className={"bg-[rgb(35,35,44)] relative md:px-6 px-4"}>
                         <div className={"!flex !h-full relative w-full items-center justify-center"}>
-                            <Image quality={100} objectFit={"contain"} layout={"fill"} src={`/23.jpg`} alt={""}/>
+                            <Image quality={100} objectFit={"contain"} layout={"fill"} src={`/-1.jpg`} alt={""}/>
                         </div>
                         <div
                             className={"absolute font-medium  text-black text-[14px] bottom-6 w-full text-center left-0"}>
                             {/*{index-index+1}*/}
                         </div>
                     </div>
+
                     {/*<div*/}
                     {/*    className={"bg-[rgb(35,35,44)] relative md:px-6 px-4"}>*/}
                     {/*</div>*/}
 
-                    {[21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0].map((item, index) =>
+                    {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21].map((item, index) =>
                         <div key={index}
                              className={"bg-white relative md:px-6 px-4"}>
 
@@ -129,19 +152,19 @@ export default function Home() {
                                 {item + 1}
                             </div>
                         </div>)}
-                    {/*<div*/}
-                    {/*    className={"bg-[rgb(35,35,44)] relative md:px-6 px-4"}>*/}
-                    {/*</div>*/}
+
                     <div
                         className={"bg-[rgb(35,35,44)] relative md:px-6 px-4"}>
                         <div className={"!flex !h-full relative w-full items-center justify-center"}>
-                            <Image quality={100} objectFit={"contain"} layout={"fill"} src={`/-1.jpg`} alt={""}/>
+                            <Image quality={100} objectFit={"contain"} layout={"fill"} src={`/23.jpg`} alt={""}/>
                         </div>
                         <div
                             className={"absolute font-medium  text-black text-[14px] bottom-6 w-full text-center left-0"}>
                             {/*{index-index+1}*/}
                         </div>
                     </div>
+
+
                 </HTMLFlipBook>
             </div>
             <div dir={"rtl"}
@@ -172,7 +195,7 @@ export default function Home() {
                     </div>
 
 
-                    {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22].map((item, index) =>
+                    {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21].map((item, index) =>
                         <div key={index}
                              className={"bg-white relative md:px-6 px-4"}>
 
